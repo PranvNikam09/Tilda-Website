@@ -1,0 +1,121 @@
+import React, { useMemo } from 'react';
+import { useGLTF } from '@react-three/drei';
+
+export function LagunTable({ isVisible, isSelected, ...props }) {
+  const { nodes, materials } = useGLTF('./models/parts144/lagun-table-with-cup-holder.glb');
+
+  // Highlighted materials for each unique material
+  const highlightedMaterial027 = useMemo(() => {
+    const material = materials['Material.027'].clone();
+    material.emissive.set('red');
+    material.emissiveIntensity = 1;
+    return material;
+  }, [materials['Material.027']]);
+
+  const highlightedMaterialBlack010 = useMemo(() => {
+    const material = materials['black.010'].clone();
+    material.emissive.set('red');
+    material.emissiveIntensity = 1;
+    return material;
+  }, [materials['black.010']]);
+
+  const highlightedMaterial116 = useMemo(() => {
+    const material = materials['Material.116'].clone();
+    material.emissive.set('red');
+    material.emissiveIntensity = 1;
+    return material;
+  }, [materials['Material.116']]);
+
+  const highlightedMaterial117 = useMemo(() => {
+    const material = materials['Material.117'].clone();
+    material.emissive.set('red');
+    material.emissiveIntensity = 1;
+    return material;
+  }, [materials['Material.117']]);
+
+  const highlightedMaterialOakWood = useMemo(() => {
+    const material = materials['Oak Wood Natural Clean'].clone();
+    material.emissive.set('red');
+    material.emissiveIntensity = 1;
+    return material;
+  }, [materials['Oak Wood Natural Clean']]);
+
+  const highlightedMaterialBlack002 = useMemo(() => {
+    const material = materials['black.002'].clone();
+    material.emissive.set('red');
+    material.emissiveIntensity = 1;
+    return material;
+  }, [materials['black.002']]);
+
+  const highlightedMaterial115 = useMemo(() => {
+    const material = materials['Material.115'].clone();
+    material.emissive.set('red');
+    material.emissiveIntensity = 1;
+    return material;
+  }, [materials['Material.115']]);
+
+  return (
+    <group {...props} dispose={null} visible={isVisible}>
+      <group position={[0.036, 1.108, 0.974]}>
+        {nodes?.Circle009?.geometry && (
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Circle009.geometry}
+            material={isSelected ? highlightedMaterial027 : materials['Material.027']}
+          />
+        )}
+        {nodes?.Circle009_1?.geometry && (
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Circle009_1.geometry}
+            material={isSelected ? highlightedMaterialBlack010 : materials['black.010']}
+          />
+        )}
+        {nodes?.Circle009_2?.geometry && (
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Circle009_2.geometry}
+            material={isSelected ? highlightedMaterial116 : materials['Material.116']}
+          />
+        )}
+        {nodes?.Circle009_3?.geometry && (
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Circle009_3.geometry}
+            material={isSelected ? highlightedMaterial117 : materials['Material.117']}
+          />
+        )}
+        {nodes?.Circle009_4?.geometry && (
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Circle009_4.geometry}
+            material={isSelected ? highlightedMaterialOakWood : materials['Oak Wood Natural Clean']}
+          />
+        )}
+        {nodes?.Circle009_5?.geometry && (
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Circle009_5.geometry}
+            material={isSelected ? highlightedMaterialBlack002 : materials['black.002']}
+          />
+        )}
+        {nodes?.Circle009_6?.geometry && (
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Circle009_6.geometry}
+            material={isSelected ? highlightedMaterial115 : materials['Material.115']}
+          />
+        )}
+      </group>
+    </group>
+  );
+}
+
+useGLTF.preload('./models/parts144/lagun-table-with-cup-holder.glb');

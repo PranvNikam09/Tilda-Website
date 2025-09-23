@@ -1,0 +1,27 @@
+import React, { useMemo } from 'react';
+import { useGLTF } from '@react-three/drei';
+
+export default function Awning({ isSelected, ...props }) {
+  const { nodes, materials } = useGLTF('./models/ex-parts144/Awning.glb');
+
+  const highlightedMaterial051 = useMemo(() => {
+    const material = materials['Material.051'].clone();
+    material.emissive.set('red');
+    material.emissiveIntensity = 1;
+    return material;
+  }, [materials['Material.051']]);
+
+  return (
+    <group {...props} dispose={null}>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes['G-Object061'].geometry}
+        material={isSelected ? highlightedMaterial051 : materials['Material.051']}
+        position={[-1.777, 2.485, -0.982]}
+      />
+    </group>
+  );
+}
+
+useGLTF.preload('./models/ex-parts144/Awning.glb');

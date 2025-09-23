@@ -1,0 +1,54 @@
+import React, { useMemo } from 'react';
+import { useGLTF } from '@react-three/drei';
+
+export default function Shower({ isSelected, ...props }) {
+  const { nodes, materials } = useGLTF('./models/parts144/Shower.glb');
+
+  const highlightedMaterial = useMemo(() => {
+    const material = materials.Material.clone();
+    material.emissive.set('red');
+    material.emissiveIntensity = 1;
+    return material;
+  }, [materials.Material]);
+
+  const highlightedMaterial007 = useMemo(() => {
+    const material = materials['Material.007'].clone();
+    material.emissive.set('red');
+    material.emissiveIntensity = 1;
+    return material;
+  }, [materials['Material.007']]);
+
+  const highlightedMaterial075 = useMemo(() => {
+    const material = materials['Material.075'].clone();
+    material.emissive.set('red');
+    material.emissiveIntensity = 1;
+    return material;
+  }, [materials['Material.075']]);
+
+  return (
+    <group {...props} dispose={null}>
+      <group position={[0.501, 1.563, -0.759]}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Cube010.geometry}
+          material={isSelected ? highlightedMaterial : materials.Material}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Cube010_1.geometry}
+          material={isSelected ? highlightedMaterial007 : materials['Material.007']}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Cube010_2.geometry}
+          material={isSelected ? highlightedMaterial075 : materials['Material.075']}
+        />
+      </group>
+    </group>
+  );
+}
+
+useGLTF.preload('./models/parts144/Shower.glb');

@@ -1,0 +1,31 @@
+
+//
+// 1. Remove all the import statements related to model components like Ceiling, JumpSeat, DinetteBed, etc.
+//    These components have already been moved into `components/model-data/modelData.js`.
+//
+// 2. Remove the full definitions of the arrays:
+//    - `interiorModels`
+//    - `exteriorModels`
+//    - `systemModels`
+//
+// 3. Replace them with the following import:
+//
+//    import { interiorModels, exteriorModels, systemModels } from "./components/model-data/modelData";
+//
+// ⚠️ Ensure no duplicated imports are left.
+// ✅ After this cleanup, the configurator should still behave the same way as before.
+// ```
+
+---
+
+### ✅ What This Does
+
+Once Copilot completes this, `MultiStepForm.jsx` will:
+
+- Be leaner and more maintainable
+- Load all model arrays from the clean `modelData.js` file
+- Work as before without breaking any functionality
+
+---
+
+Let me know if you'd like me to **apply the changes manually** or generate `modelData.js` content directly.

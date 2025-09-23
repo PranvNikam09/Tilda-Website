@@ -1,0 +1,61 @@
+import React, { useMemo } from 'react';
+import { useGLTF } from '@react-three/drei';
+
+export function KitchenBehindDriver({ isSelected, ...props }) {
+  const { nodes, materials } = useGLTF('./models/parts144/kitchen-behind-the-driver.glb');
+
+  // Highlighted materials for each unique material
+  const highlightedMaterialSimpleWood = useMemo(() => {
+    const material = materials['Simple wood.001'].clone();
+    material.emissive.set('red');
+    material.emissiveIntensity = 1;
+    return material;
+  }, [materials['Simple wood.001']]);
+
+  const highlightedMaterialBrownWood = useMemo(() => {
+    const material = materials.BrownWood.clone();
+    material.emissive.set('red');
+    material.emissiveIntensity = 1;
+    return material;
+  }, [materials.BrownWood]);
+
+  const highlightedMaterialBlack006 = useMemo(() => {
+    const material = materials['black.006'].clone();
+    material.emissive.set('red');
+    material.emissiveIntensity = 1;
+    return material;
+  }, [materials['black.006']]);
+
+  return (
+    <group {...props} dispose={null}>
+      <group position={[0.418, 0.991, -0.044]}>
+        {nodes?.['billy-obj010_1']?.geometry &&
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes['billy-obj010_1'].geometry}
+            material={isSelected ? highlightedMaterialSimpleWood : materials['Simple wood.001']}
+          />
+        }
+        {nodes?.['billy-obj010_2']?.geometry &&
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes['billy-obj010_2'].geometry}
+            material={isSelected ? highlightedMaterialBrownWood : materials.BrownWood}
+          />
+        }
+        {nodes?.['billy-obj010_3']?.geometry &&
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes['billy-obj010_3'].geometry}
+            material={isSelected ? highlightedMaterialBlack006 : materials['black.006']}
+          />
+        }
+      </group>
+    </group>
+  );
+}
+
+useGLTF.preload('./models/parts144/kitchen-behind-the-driver.glb');
